@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1575903339 source:c:\users\9831121\desktop\midtermpro\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1575917910 source:c:\users\hussein valeh\desktop\midterm project\midtermpro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1576180911 source:c:\users\hussein valeh\desktop\midterm project -1\midtermpro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1576336721 source:c:\users\hussein valeh\desktop\midterm project -2\midtermpro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1576414467 source:c:\users\hussein valeh\desktop\midterm project -3\midtermpro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
