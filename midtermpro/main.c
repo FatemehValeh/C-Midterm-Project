@@ -7,7 +7,7 @@
 WELCOME
 thief and robber are two names for one meaning :D
 cops and policemen are two names for one meaning :D*/
-int map[1000][1000]; ///cops and robber are here
+int map[1000][1000]; ///cops and robber are here //-1: thief // -2: police // 0: vacant
 int positions[1000][1000][2];/// keeps x & y of cops locations
 int count; ///counts number or policemen moves
 int t_count; ///counts number or thief moves
@@ -36,9 +36,9 @@ void myprint(int row, int column){
         }
         else if (map[k][l]!=-2){
 
-            printf("D%d ", map[k][l]);
+            printf("D%d ", map[k][l]); //%d to show from which station comes
         }
-        else if(map[k][l] == -2){
+        else if(map[k][l] == -2){ // showing vacant places with *
             printf(" * ");
         }
         }
@@ -46,9 +46,9 @@ void myprint(int row, int column){
     printf("\n");
      }
 }
-///check if a policeman sees the thief or not
-int seen(int a, int b, int x, int y){
-    if ( (a==x) && (b==y) ){
+///check if a policeman sees the thief or not, returns an int in this order:                      8  3  5
+int seen(int a, int b, int x, int y){    //                                                       2  T  1
+    if ( (a==x) && (b==y) ){             //                                                       7  4  6
         printf("GAME OVER :(\n");
         printf("Number of thief moves:%d  Number of policemen moves:%d \n", t_count, count);
         exit (0);
@@ -95,7 +95,7 @@ void move(int a, int b, int x, int y, int i, int j, int row, int column){
     int aa=a;
     int bb=b;
     double arr[9]={l, distance(a, b-1,x,y), distance(a,b+1,x,y), distance(a+1,b,x,y), distance(a-1,b,x,y), distance(a-1,b+1,x,y), distance(a-1,b-1,x,y), distance(a+1,b-1,x,y), distance(a+1,b+1,x,y)};
-    double ll=mymin(arr);
+    double ll=mymin(arr);// find the nearest place to the thief
         ///up
          if (ll==distance(a,b-1,x,y) && (map[b-1][a]==-2 || map[b-1][a]==-1)){
             map[bb-1][aa]= map[bb][aa];
@@ -161,9 +161,9 @@ void move(int a, int b, int x, int y, int i, int j, int row, int column){
             count++;
         }
 }
-///policemen rand move
-void rand_move (int a, int b, int i, int j, int row, int column){
-    int p=rand()%9;
+///policemen rand move in this order:                                                 7   0   1
+void rand_move (int a, int b, int i, int j, int row, int column){ //                  6   8D  2
+    int p=rand()%9;                                               //                  5   4   3
     switch (p){
     case 0:
         if(map[b-1][a]==-2 || map[b-1][a]==-1){
@@ -518,14 +518,14 @@ int main()
     myprint(row,column);
     while (1){
     printf("\nnow thief moves: \n");
-    t_move(thief[0],thief[1],row,column);
+    t_move(thief[0],thief[1],row,column); //thief moves before police
     myprint(row,column);
     printf("\nnow police move: \n");
     int i,j, check, jj, qq;
     int flag=0;
     for(i=0; i<stations; i++){
         for (j=0; j<sheriff[i]; j++){
-            flag= seen(positions[i][j][0], positions[i][j][1],thief[0],thief[1]);
+            flag= seen(positions[i][j][0], positions[i][j][1],thief[0],thief[1]);  //calling polices of a station
             if (flag!=-1){
                 star=1;
                 break;}
